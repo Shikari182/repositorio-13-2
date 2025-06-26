@@ -1,0 +1,15 @@
+.root {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.formGroup {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
