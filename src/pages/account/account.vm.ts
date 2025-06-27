@@ -3,6 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Account } from "./api/account.api-model";
 import { saveAccount } from "./api/account.api";
 import { appRoutes } from "@/core/router";
+import { validateForm } from "./account.validations";
+
+
+export interface AccountFormErrors {
+  type?: string;
+  name?: string;
+}
 
 export interface AccountFormVm {
   type: string;
@@ -23,7 +30,7 @@ export const useAccountForm = (): AccountFormVm => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    const newErrors: { type?: string; name?: string } = {};
+    const newErrors = validateForm({ type, name });
     if (!type) {
       newErrors.type = "Debe elegir un tipo de cuenta";
     }
