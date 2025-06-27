@@ -1,10 +1,10 @@
 import React from "react";
 import { AppLayout } from "@/layouts";
-import { useAccountForm } from "./account.vm";
+import { useAccountForm } from "./account.hook";
 import classes from "./account.page.module.css";
 
 export const AccountPage: React.FC = () => {
-  const { type, name, errors, setType, setName, handleSubmit } = useAccountForm();
+  const { account, errors, setAccount, handleSubmit } = useAccountForm();
 
   return (
     <AppLayout>
@@ -12,7 +12,7 @@ export const AccountPage: React.FC = () => {
         <h1>Crear Nueva Cuenta</h1>
         <div className={classes.formGroup}>
           <label>Tipo de Cuenta</label>
-          <select value={type} onChange={(e) => setType(e.target.value)}>
+          <select value={account.type} onChange={(e) => setAccount({ ...account, type: e.target.value })}>
             <option value="">Seleccione</option>
             <option value="current">Cuenta Corriente</option>
             <option value="savings">Cuenta Ahorro</option>
@@ -23,8 +23,8 @@ export const AccountPage: React.FC = () => {
           <label>Alias</label>
           <input
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={account.name}
+            onChange={(e) => setAccount({ ...account, name: e.target.value })}
           />
           {errors.name && <span className={classes.error}>{errors.name}</span>}
         </div>
